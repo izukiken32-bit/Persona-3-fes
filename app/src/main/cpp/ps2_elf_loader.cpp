@@ -51,6 +51,7 @@ ElfLoadResult Ps2ElfLoader::load(EeCore& core, std::span<const std::uint8_t> ima
         ++loaded;
     }
     if (!loaded) return fail("ELF contains no loadable segments");
+    if (!core.set_pc(entry)) return fail(core.error());
     return {true,entry,loaded,"ELF segments loaded; PS2 system boot services are still required"};
 }
 }
