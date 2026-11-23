@@ -69,6 +69,12 @@ bool EeCore::load_bytes(std::uint32_t a, const std::uint8_t* bytes, std::size_t 
     error_ = ""; return true;
 }
 
+bool EeCore::set_pc(std::uint32_t address) {
+    const std::uint32_t physical = address & 0x1fffffffu;
+    if ((address & 3u) || physical >= kRamBytes) { error_ = "invalid ELF entry point"; return false; }
+    s_.pc = address; s_.next_pc = address + 4; error_ = ""; return true;
+}
+
 bool EeCore::step() {
     std::uint32_t ins{};
     if (!read32(s_.pc, ins)) { error_ = "instruction fetch/alignment fault"; return false; }
