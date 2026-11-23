@@ -1,19 +1,8 @@
-# P3FES native engine roadmap
+# Native engine status / roadmap
+Architecture follows the native recompilation + host runtime pattern used by Brandon's Android projects, but PS2 FES requires a distinct MIPS R5900/Emotion Engine runtime.
 
-This repository is being developed toward the native-recompilation/runtime pattern used by Brandon's Android ports. P3FES is a PS2 title, so its target runtime is not the Switch runtime used by those projects.
+Implemented starter: Android NDK/CMake target, EE state and 32 MiB RAM model, small MIPS instruction stepping subset, JNI probe.
 
-## Added in this foundation commit
-- Android NDK/CMake shared-library target
-- EE CPU state, 32 MiB RAM model, RAM aliases and a small instruction-stepper
-- JNI entry point to verify that the native runtime loads in Android
+Not implemented and required for boot/play: full R5900/MMI/FPU and timing/exceptions; game ELF loader/static recompiler; PS2 IOP/services; GS graphics renderer; VU0/VU1; SPU2 audio; CD/DVD and game filesystem; movie decoding; controller/touch, memory cards and lifecycle integration.
 
-## Required before a game can boot
-1. Complete EE/R5900 + MMI/FPU semantics, exception/interrupt and timing model
-2. ELF/SLUS loader and static-recompilation pipeline for the USA P3FES executable
-3. PS2 IOP subsystem and device services
-4. GS renderer (Vulkan/OpenGL ES), texture/framebuffer handling
-5. VU0/VU1 execution and microprogram support
-6. SPU2 audio, CD/DVD and file-system services, ADPCM/ADX and movie playback
-7. Android touch/controller mapping, save cards, suspend/resume and device profiling
-
-The current CPU core is an instructional bring-up slice, not a compatibility-complete emulator. It cannot boot Persona 3 FES yet. The APK contains no game data; users supply their own legally obtained files locally.
+This is a foundation slice, not a playable engine or finished APK. No copyrighted game files are bundled.
