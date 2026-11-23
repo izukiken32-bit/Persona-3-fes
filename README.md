@@ -1,5 +1,5 @@
 # Persona 3 FES — Android project
-Native Android launcher and early engine foundation targeting an eventual native-recompilation/runtime port.
+Native Android launcher and early engine foundation targeting ARM Mali GPU devices through a future native-recompilation/runtime port.
 
 ## Current status
 - Android launcher/settings and CI APK workflow
