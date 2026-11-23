@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.22.1)
+project(p3fes_runtime LANGUAGES CXX)
+add_library(p3fes_runtime SHARED engine_jni.cpp ee_core.cpp)
+target_compile_features(p3fes_runtime PRIVATE cxx_std_20)
+target_compile_options(p3fes_runtime PRIVATE -Wall -Wextra -Werror=return-type -O2)
+target_link_libraries(p3fes_runtime android log)
