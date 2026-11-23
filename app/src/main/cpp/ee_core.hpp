@@ -14,7 +14,7 @@ public:
     static constexpr std::size_t kRamBytes = 32u * 1024u * 1024u;
     EeCore();
     void reset();
-    bool load_words(std::uint32_t address, const std::uint32_t* words, std::size_t count);
+    bool load_words(std::uint32_t address, const std::uint32_t* words, std::size_t count);\n    bool load_bytes(std::uint32_t address, const std::uint8_t* bytes, std::size_t count);
     bool step();
     const EeState& state() const { return s_; }
     const char* error() const { return error_; }
