@@ -60,6 +60,15 @@ bool EeCore::load_words(std::uint32_t a, const std::uint32_t* words, std::size_t
     return true;
 }
 
+bool EeCore::load_bytes(std::uint32_t a, const std::uint8_t* bytes, std::size_t n) {
+    const std::uint32_t physical = a & 0x1fffffffu;
+    if ((!bytes && n) || std::uint64_t(physical) + n > kRamBytes) {
+        error_ = "ELF segment outside EE RAM"; return false;
+    }
+    if (n) std::memcpy(ram_.data() + physical, bytes, n);
+    error_ = ""; return true;
+}
+
 bool EeCore::step() {
     std::uint32_t ins{};
     if (!read32(s_.pc, ins)) { error_ = "instruction fetch/alignment fault"; return false; }
